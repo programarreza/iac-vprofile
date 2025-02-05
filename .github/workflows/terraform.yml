@@ -94,8 +94,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Get Kube config file
-        id: getconfig
-        if: steps.apple.outcome == 'success'
+        id: get_kube_config
+        if: steps.terraform_apply.outcome == 'success'
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
 
       - name: Install Ingress controller
